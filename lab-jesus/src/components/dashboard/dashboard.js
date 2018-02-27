@@ -2,12 +2,17 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {categoryCreate} from '../../actions/category-actions'
 import CategoryForm from '../category/category-form/category-form'
+import CategoryItem from '../category/category-item/category-item'
+import './dashboard.scss';
+import FancyButton from '../../lib/fancy-button'
+
 
 class Dashboard extends React.Component {
   render() {
     return (
       <section>
-        <h1>Welcome to my Kanban Board</h1>
+        <h1>Welcome to my</h1>
+        <FancyButton />
 
         <CategoryForm
           buttonText='create'
@@ -15,11 +20,7 @@ class Dashboard extends React.Component {
 
         {this.props.categories ?
           this.props.categories.map(cat =>
-            <div key={cat._id} onDoubleClick={() => this.setState({edit: !cat.edit})}>
-              <h3>{cat.name}</h3>
-              <a>{cat.budget}</a>
-              {console.log(cat.edit)}
-            </div>)
+             <CategoryItem key={cat._id} category={cat} />)
           :
           undefined
         }
